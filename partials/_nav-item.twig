@@ -1,0 +1,21 @@
+{% if link.children | length > 0 %}
+{% if loop.index0 %}
+<li class="main-menu_dropdown">
+{% else %}
+<li class="main-menu_submenu">
+{% endif %}
+  <a class="multi" tabindex="-1" href="#">{{ link.name }} <i class="mdi mdi-chevron-down"></i></a>
+  <ul class="main-menu_menu">
+    {% for children in link.children %}
+      {% include '_nav-item.twig' with {'link': children} %}
+    {% endfor %}
+  </ul>
+</li>
+{% else %}
+<li>
+  <a href="{{ link.url }}">
+    {{ link.name }}
+  </a>
+</li>
+{% endif %}
+

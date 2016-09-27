@@ -1,0 +1,16 @@
+<div class="product-card">
+  <div class="product-card__thumb">
+    <a href="/colecciones/{{ collection.permalink }}">
+      {% if collection.image_url is defined and collection.image_url is not empty %}
+      <img class="img-responsive product-card__thumb-image" src="{{ collection.image_url }}" alt="{{ collection.title }}">
+      {% else %}
+      <img class="img-responsive product-card__thumb-image" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" alt="{{ collection.title }}">
+      {% endif %}
+    </a>
+  </div>
+  <div class="product-card__details">
+    <a href="/colecciones/{{ collection.permalink }}">
+      <h4 class="product-card__name">{{ collection.title }}</h4>
+    </a>
+  </div>
+</div>

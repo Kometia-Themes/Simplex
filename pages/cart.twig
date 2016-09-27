@@ -1,0 +1,92 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="section-title">{{ page_title }}</h1>
+  </div>
+</div>
+
+{% if not cart or cart.items|length == 0 %}
+<div class="row cart">
+  <div class="col-sm-12">
+    <p class="lead">No hay productos en el carrito.</p>
+  </div>
+</div>
+{% else %}
+<div class="row cart">
+  <div class="col-sm-12">
+    <table class="table  table-responsive cart__resume-table">
+      <thead>
+        <tr>
+          <th class="hidden-xs"></th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th class="text-right">Precio</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+        <tr>
+          <td class="hidden-xs" align="center">
+            <img class="img-responsive" src="{{ item.sku.image.url }}?w=100" width="100" alt="{{ item.sku.full_name }}">
+          </td>
+          <td>
+            <a class="cart__resume-table__product-name" href="/productos/{{ item.product.permalink }}">{{ item.sku.full_name }}</a>
+            <p>{{ item.product.excerpt | raw }}</p>
+          </td>
+          <td>
+            <form action="/carrito/actualizar" method="post">
+              <input type="hidden" name="_method" value="patch">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <select class="cart__resume-table__product-quantity" name="quantity">
+                {% for qty in 1..5 %}
+                <option value="{{ qty }}"{{ qty == item.quantity ? ' selected="selected"' : null }}>{{ qty }}</option>
+                {% endfor %}
+              </select>
+              <button class="btn btn-link" type="submit"><span class="mdi mdi-pencil"></span></button>
+            </form>
+          </td>
+          <td class="cart__resume-table__product-amount">
+            {{ item.total | money('symbol', 'code') }}
+          </td>
+          <td width="5%">
+            <form action="/carrito/eliminar" method="post" class="text-center">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <input type="hidden" name="quantity" value="0">
+              <button type="submit" class="cart__resume-table__product-remove"><span class="mdi mdi-delete"></span></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="cart-totals">
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <h3 class="cart-total-row__title">TOTAL {{ cart.total_price | money('symbol', 'code') }}</h3>
+      {% if store.is_tax_included %}
+      <p>IVA Incluído</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-left">
+      <a href="/productos" class="btn btn-lg text-uppercase">Seguir comprando</a>
+    </div>
+    <div class="pull-right">
+      <a href="/checkout" class="btn btn-lg text-uppercase">Continuar</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

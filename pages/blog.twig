@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+<div class="row blog-posts">
+  <div class="col-sm-8">
+  <h1 class="section-title">{{ blog.title }}</h1>
+  {% for post in posts %}
+  <div class="blog-posts__post">
+    <h3 class="blog-posts__post-title">
+      <a class="blog-posts__post-title" href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">
+        {{ post.title }}
+      </a>
+    </h3>
+    <p class="date">{{ post.published_at | datetime }}</p>
+    <p class="blog-posts__post-summary">
+      {{ (post.summary is not empty ? post.summary : post.content) | truncate_words(70) }}
+    </p>
+    <p>
+      <a href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">Leer más →</a>
+    </p>
+    {% if loop.last == false %}
+    <hr class="divider" />
+    {% endif %}
+  </div>
+  {% endfor %}
+  </div>
+
+  <div class="col-sm-3">
+    {% include '_blog-sidebar.twig' %}
+  </div>
+</div>
+
+{% include '_pagination.twig' %}
+
+{% endblock %}

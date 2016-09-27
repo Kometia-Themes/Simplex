@@ -1,0 +1,28 @@
+{% if settings.slide_1 or settings.slide_2 or settings.slide_3 or settings.slide_4 %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="js-slider">
+      {% for i in 1..4 %}
+      {% set slide = 'slide_'~i %}
+      {% if settings[slide] %}
+      {% set link = 'slide_'~i~'_link' %}
+      {% set image = 'slideshow_'~i~'.jpg' %}
+      {% set text = 'slide_'~i~'_alt' %}
+      <div class="slide">
+        {% if settings[link] is not empty %}
+        <a href="{{ settings[link] }}">
+          <img class="img-responsive" src="{{ settings[image] }}" />
+        </a>
+        {% else %}
+        <img class="img-responsive" src="{{ settings[image] }}" />
+        {% endif %}
+        {% if settings[text] is not empty %}
+        <p class="slide__caption">{{ settings[text] | raw }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}

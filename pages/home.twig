@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+{% if settings.frontpage_section_1 is not empty and settings.frontpage_section_1 != 'none' %}
+  {% include '_' ~ settings.frontpage_section_1 ~ '.twig' %}
+  <hr>
+{% endif %}
+
+{% if settings.frontpage_section_2 is not empty and settings.frontpage_section_2 != 'none' %}
+  {% include '_' ~ settings.frontpage_section_2 ~ '.twig' %}
+{% endif %}
+
+{% if settings.frontpage_section_3 is not empty and settings.frontpage_section_3 != 'none' %}
+  <hr>
+  {% include '_' ~ settings.frontpage_section_3 ~ '.twig' %}
+{% endif %}
+
+{% endblock %}

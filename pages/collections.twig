@@ -1,0 +1,34 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="section-title">{{ page_title }}</h1>
+  </div>
+</div>
+
+{% if collections | length == 0 %}
+
+  {% include '_collections-placeholder.twig' %}
+
+{% else %}
+
+<div class="row">
+  <div class="col-sm-12">
+    {% for collections_row in collections | batch(3) %}
+    <div class="row">
+      {% for collection in collections_row %}
+      <div class="col-xs-12 col-sm-4">
+        {% include '_collection.twig' %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% include '_pagination.twig' %}
+
+{% endif
+%}
+{% endblock %}

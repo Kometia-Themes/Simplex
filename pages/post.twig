@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="row post">
+  <div class="col-sm-9">
+    <h1 class="post__title">{{ post.title }}</h1>
+    <p><em>{{ post.published_at | datetime }}</em></p>
+    <p class="post__content">{{ post.content }}</p>
+    {% if settings.enable_share_blog %}
+      <hr>
+      {% include '_social-share.twig' %}
+    {% endif %}
+  </div>
+
+  <div class="col-sm-3 related-posts">
+    {% include '_blog-sidebar.twig' %}
+  </div>
+</div>
+{% endblock %}

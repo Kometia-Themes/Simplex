@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="row">
+  {% if categories | length > 0 %}
+  <div class="col-sm-3 col-md-2 products-filter">
+    <h4 class="products-filter__title">Categorías</h4>
+    <hr>
+    <div class="form-group products-filter__container">
+      {% for category_element in categories %}
+      {% include '_category_tree_item.twig' with { 'category': category_element, 'current': category, index: loop.index } only %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="{% if categories | length > 0 %}col-sm-9 col-md-10{% else %}col-sm-12{% endif %}">
+    <h1 class="section-title">{{ category.title }}</h1>
+    {% if products.count == 0 %}
+
+      {% include '_products-placeholder.twig' %}
+
+    {% else %}
+
+    {% for products_row in products | batch(3) %}
+    <div class="row">
+      {% for product in products_row %}
+      <div class="col-xs-12 col-sm-4">
+        {% include '_product.twig' %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% include '_pagination.twig' %}
+
+    {% endif %}
+  </div>
+
+  {% include '_pagination.twig' %}
+</div>
+{% endblock %}

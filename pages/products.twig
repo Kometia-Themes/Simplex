@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+<ul class="breadcrumb">
+  <li><a href="/">Inicio</a></li>
+  <li class="active">Productos</li>
+</ul>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="section-title">{{ page_title }}</h1>
+  </div>
+</div>
+
+{% if products.count == 0 %}
+
+  {% include '_products-placeholder.twig' %}
+
+{% else %}
+
+<div class="row">
+  <div class="col-sm-12">
+    {% for products_row in products | batch(3) %}
+    <div class="row">
+      {% for product in products_row %}
+      <div class="col-xs-12 col-sm-4">
+        {% include '_product.twig' %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% include '_pagination.twig' %}
+
+{% endif %}
+
+{% endblock %}

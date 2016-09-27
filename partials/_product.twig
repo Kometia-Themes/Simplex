@@ -1,0 +1,28 @@
+<div class="product-card">
+  {% if not product.is_in_stock %}
+  <div class="ribbon"><span class="danger">AGOTADO</span></div>
+  {% endif %}
+  {% if product.compared_price is defined and product.compared_price > 0 %}
+  <div class="ribbon"><span class="warning">OFERTA</span></div>
+  {% endif %}
+  <div class="product-card__thumb">
+    <a href="/productos/{{ product.permalink }}">
+      {% if product.image_url is defined %}
+      <img class="img-responsive product-card__thumb-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+      {% else %}
+      <img class="img-responsive product-card__thumb-image" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" alt="{{ product.name }}">
+      {% endif %}
+    </a>
+  </div>
+  <div class="product-card__details">
+    <a href="/productos/{{ product.permalink }}">
+      <h4 class="product-card__name">{{ product.name }}</h4>
+      <span class="product-card__price">
+        {% if product.compared_price is defined and product.compared_price > 0 %}
+          <del>{{ product.compared_price | money('symbol', 'code') }}</del>
+        {% endif %}
+        {{ product.price | money('symbol', 'code') }}
+      </span>
+    </a>
+  </div>
+</div>

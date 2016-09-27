@@ -1,0 +1,26 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="section-title section-title--margin">Recuperar Contraseña</h1>
+    <p>Por favor ingresa tu correo electrónico. Recibirás un link para cambiar tu contraseña.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <form action="/cuenta/recuperar" method="POST" role="form" class="login-form">
+      <div class="form-group">
+        <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Correo electrónico" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-lg btn-action">Recuperar</button>
+      </div>
+      <p>
+        <a href="/cuenta/login">Cancelar</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}
