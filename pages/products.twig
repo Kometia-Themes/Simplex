@@ -1,26 +1,17 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-
-<ul class="breadcrumb">
-  <li><a href="/">Inicio</a></li>
-  <li class="active">Productos</li>
-</ul>
-
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     <h1 class="section-title">{{ page_title }}</h1>
   </div>
 </div>
 
-{% if products.count == 0 %}
-
-  {% include '_products-placeholder.twig' %}
-
-{% else %}
-
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+  {% if products.count == 0 %}
+    {% include '_products-placeholder.twig' %}
+  {% else %}
     {% for products_row in products | batch(3) %}
     <div class="row">
       {% for product in products_row %}
@@ -30,11 +21,10 @@
       {% endfor %}
     </div>
     {% endfor %}
+    {% include '_pagination.twig' %}
+  {% endif %}
   </div>
 </div>
 
-{% include '_pagination.twig' %}
-
-{% endif %}
 
 {% endblock %}

@@ -1,0 +1,6 @@
+{% set product = all_products[settings.frontpage_product] %}
+{% if product is not empty %}
+  {% include '_product-simple.twig' %}
+{% else %}
+  {% include '_product-placeholder.twig' %}
+{% endif %}

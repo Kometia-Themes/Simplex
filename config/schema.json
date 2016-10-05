@@ -23,6 +23,32 @@
         "default": "#dddddd"
       }, {
         "type": "color",
+        "id": "link_color",
+        "label": "Links Y Botones",
+        "default": "#63a163"
+      }, {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Texto de Botones",
+        "default": "#ffffff"
+      }]
+    }, {
+      "header": "Colores Encabezado",
+      "settings": [{
+        "type": "color",
+        "id": "nav_bg_color",
+        "label": "Fondo del Menú Principal",
+        "default": "#63a163"
+      }, {
+        "type": "color",
+        "id": "nav_link_color",
+        "label": "Links del Menú Principal",
+        "default": "#ffffff"
+      }]
+    }, {
+      "header": "Colores Texto",
+      "settings": [{
+        "type": "color",
         "id": "body_font_color",
         "label": "Texto",
         "default": "#555555"
@@ -38,76 +64,14 @@
         "default": "#333333"
       }, {
         "type": "color",
-        "id": "link_color",
-        "label": "Links Y Botones",
-        "default": "#4a89dc"
+        "id": "price_color",
+        "label": "Precio",
+        "default": "#a1a1a1"
       }, {
         "type": "color",
-        "id": "button_text_color",
-        "label": "Texto de Botones",
-        "default": "#ffffff"
-      }]
-    }, {
-      "header": "Colores Encabezado",
-      "settings": [{
-        "type": "color",
-        "id": "header_bar_bg_color",
-        "label": "Fondo de Barra en Encabezado",
-        "default": "#4a89dc"
-      }, {
-        "type": "color",
-        "id": "header_bar_message_color",
-        "label": "Texto de Barra en Encabezado",
-        "default": "#ffffff"
-      }, {
-        "type": "color",
-        "id": "header_bg_color",
-        "label": "Fondo de Encabezado",
-        "default": "#4a89dc"
-      }, {
-        "type": "color",
-        "id": "header_links_color",
-        "label": "Texto y Links en Encabezado",
-        "default": "#ffffff"
-      }, {
-        "type": "color",
-        "id": "menu_bg_color",
-        "label": "Fondo del Menú Principal",
-        "default": "#ffffff"
-      }, {
-        "type": "color",
-        "id": "nav_link_color",
-        "label": "Links del Menú Principal",
-        "default": "#888888"
-      }]
-    }, {
-      "header": "Fondo",
-      "settings": [{
-        "type": "checkbox",
-        "id": "use_bg_image",
-        "label": "Usar imagen de fondo"
-      }, {
-        "type": "image",
-        "id": "bg.jpg",
-        "label": "Imagen de fondo"
-      }, {
-        "type": "select",
-        "id": "bg_alignment",
-        "label": "Estilo de imagen",
-        "options": [{
-          "value": "fill contained",
-          "label": "Rellenado, visible a los lados"
-        }, {
-          "value": "fill entire",
-          "label": "Completo, toda la página"
-        }, {
-          "value": "tiled contained",
-          "label": "Repetidos, visible a los lados"
-        }, {
-          "value": "tiled entire",
-          "label": "Repetidos, toda la página"
-        }],
-        "default": "fill contained"
+        "id": "discount_color",
+        "label": "Precio de descuento",
+        "default": "#a1a1a1"
       }]
     }]
   }, {
@@ -116,6 +80,248 @@
     "sections": [{
       "header": "Tipografía Base",
       "settings": [{
+        "type": "select",
+        "id": "accent_font",
+        "label": "Tipografía",
+        "options": [{
+          "value": "Google+Arvo",
+          "label": "Arvo",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Asap",
+          "label": "Asap",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Cabin",
+          "label": "Cabin",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Copse",
+          "label": "Copse",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Droid+Sans",
+          "label": "Droid Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Droid+Serif",
+          "label": "Droid Serif",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Gentium+Book+Basic",
+          "label": "Gentium Book Basic",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Josefin+Slab",
+          "label": "Josefin Slab",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Josefin+Sans",
+          "label": "Josefin Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Kreon",
+          "label": "Kreon",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Lato",
+          "label": "Lato",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Merriweather",
+          "label": "Merriweather",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Montserrat",
+          "label": "Montserrat",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Old+Standard+TT",
+          "label": "Old Standard TT",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Open+Sans",
+          "label": "Open Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "ProximaNovaLight",
+          "label": "Proxima Nova",
+          "group": "Web Fonts"
+        }, {
+          "value": "Helvetica, Arial, sans-serif",
+          "label": "Helvetica\/Arial",
+          "group": "Sans-serif"
+        }, {
+          "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
+          "label": "Impact",
+          "group": "Sans-serif"
+        }, {
+          "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
+          "label": "Lucida Grande",
+          "group": "Sans-serif"
+        }, {
+          "value": "Trebuchet MS, sans-serif",
+          "label": "Trebuchet MS",
+          "group": "Sans-serif"
+        }, {
+          "value": "Verdana, Helvetica, Arial, sans-serif",
+          "label": "Verdana",
+          "group": "Sans-serif"
+        }, {
+          "value": "Garamond, Baskerville, Caslon, serif",
+          "label": "Garamond",
+          "group": "Serif"
+        }, {
+          "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+          "label": "Georgia",
+          "group": "Serif"
+        }, {
+          "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+          "label": "Palatino",
+          "group": "Serif"
+        }, {
+          "value": "'Times New Roman', Times, serif",
+          "label": "Times New Roman",
+          "group": "Serif"
+        }, {
+          "value": "'Courier New', Courier, monospace",
+          "label": "Courier New",
+          "group": "Monospace"
+        }, {
+          "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+          "label": "Monaco\/Lucida Console",
+          "group": "Monospace"
+        }]
+      }, {
+      "type": "text",
+      "id": "accent_font_size",
+      "label": "Tamaño",
+      "default": "13px"
+      }]
+  }, {
+      "header": "Tipografía Encabezados",
+      "settings": [{
+        "type": "select",
+        "id": "header_font",
+        "label": "Tipografía",
+        "options": [{
+          "value": "Google+Arvo",
+          "label": "Arvo",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Asap",
+          "label": "Asap",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Cabin",
+          "label": "Cabin",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Copse",
+          "label": "Copse",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Droid+Sans",
+          "label": "Droid Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Droid+Serif",
+          "label": "Droid Serif",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Gentium+Book+Basic",
+          "label": "Gentium Book Basic",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Josefin+Slab",
+          "label": "Josefin Slab",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Josefin+Sans",
+          "label": "Josefin Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Kreon",
+          "label": "Kreon",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Lato",
+          "label": "Lato",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Merriweather",
+          "label": "Merriweather",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Montserrat",
+          "label": "Montserrat",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Old+Standard+TT",
+          "label": "Old Standard TT",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Open+Sans",
+          "label": "Open Sans",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "ProximaNovaLight",
+          "label": "Proxima Nova",
+          "group": "Web Fonts"
+        }, {
+          "value": "Helvetica, Arial, sans-serif",
+          "label": "Helvetica\/Arial",
+          "group": "Sans-serif"
+        }, {
+          "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
+          "label": "Impact",
+          "group": "Sans-serif"
+        }, {
+          "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
+          "label": "Lucida Grande",
+          "group": "Sans-serif"
+        }, {
+          "value": "Trebuchet MS, sans-serif",
+          "label": "Trebuchet MS",
+          "group": "Sans-serif"
+        }, {
+          "value": "Verdana, Helvetica, Arial, sans-serif",
+          "label": "Verdana",
+          "group": "Sans-serif"
+        }, {
+          "value": "Garamond, Baskerville, Caslon, serif",
+          "label": "Garamond",
+          "group": "Serif"
+        }, {
+          "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+          "label": "Georgia",
+          "group": "Serif"
+        }, {
+          "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+          "label": "Palatino",
+          "group": "Serif"
+        }, {
+          "value": "'Times New Roman', Times, serif",
+          "label": "Times New Roman",
+          "group": "Serif"
+        }, {
+          "value": "'Courier New', Courier, monospace",
+          "label": "Courier New",
+          "group": "Monospace"
+        }, {
+          "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+          "label": "Monaco\/Lucida Console",
+          "group": "Monospace"
+        }]
+      }, {
+      "type": "text",
+      "id": "title_font_size",
+      "label": "Tamaño",
+      "default": "37px"
+      }]
+  }, {
+    "header": "Tipografía Base",
+    "settings": [{
         "type": "select",
         "id": "base_font",
         "label": "Tipografía",
@@ -166,6 +372,10 @@
         }, {
           "value": "Google+Merriweather",
           "label": "Merriweather",
+          "group": "Google Web Fonts"
+        }, {
+          "value": "Google+Montserrat",
+          "label": "Montserrat",
           "group": "Google Web Fonts"
         }, {
           "value": "Google+Old+Standard+TT",
@@ -228,128 +438,6 @@
       "type": "text",
       "id": "body_font_size",
       "label": "Tamaño",
-      "default": "12px"
-      }]
-  }, {
-    "header": "Encabezados y Títulos",
-    "settings": [{
-        "type": "select",
-        "id": "header_font",
-        "label": "Tipografía",
-        "options": [{
-          "value": "Google+Arvo",
-          "label": "Arvo",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Asap",
-          "label": "Asap",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Cabin",
-          "label": "Cabin",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Copse",
-          "label": "Copse",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Droid+Sans",
-          "label": "Droid Sans",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Droid+Serif",
-          "label": "Droid Serif",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Gentium+Book+Basic",
-          "label": "Gentium Book Basic",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Josefin+Slab",
-          "label": "Josefin Slab",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Josefin+Sans",
-          "label": "Josefin Sans",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Kreon",
-          "label": "Kreon",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Lato",
-          "label": "Lato",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Merriweather",
-          "label": "Merriweather",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Old+Standard+TT",
-          "label": "Old Standard TT",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "Google+Open+Sans",
-          "label": "Open Sans",
-          "group": "Google Web Fonts"
-        }, {
-          "value": "ProximaNovaLight",
-          "label": "Proxima Nova",
-          "group": "Web Fonts"
-        }, {
-          "value": "Helvetica, Arial, sans-serif",
-          "label": "Helvetica\/Arial",
-          "group": "Sans-serif"
-        }, {
-          "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
-          "label": "Impact",
-          "group": "Sans-serif"
-        }, {
-          "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
-          "label": "Lucida Grande",
-          "group": "Sans-serif"
-        }, {
-          "value": "Trebuchet MS, sans-serif",
-          "label": "Trebuchet MS",
-          "group": "Sans-serif"
-        }, {
-          "value": "Verdana, Helvetica, Arial, sans-serif",
-          "label": "Verdana",
-          "group": "Sans-serif"
-        }, {
-          "value": "Garamond, Baskerville, Caslon, serif",
-          "label": "Garamond",
-          "group": "Serif"
-        }, {
-          "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
-          "label": "Georgia",
-          "group": "Serif"
-        }, {
-          "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
-          "label": "Palatino",
-          "group": "Serif"
-        }, {
-          "value": "'Times New Roman', Times, serif",
-          "label": "Times New Roman",
-          "group": "Serif"
-        }, {
-          "value": "'Courier New', Courier, monospace",
-          "label": "Courier New",
-          "group": "Monospace"
-        }, {
-          "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
-          "label": "Monaco\/Lucida Console",
-          "group": "Monospace"
-        }]
-      }, {
-      "type": "text",
-      "id": "title_font_size",
-      "label": "Tamaño de Títulos",
-      "default": "16px"
-    }, {
-      "type": "text",
-      "id": "subtitle_font_size",
-      "label": "Tamaño de Subtítulos",
       "default": "14px"
     }]
   }]
@@ -357,7 +445,7 @@
     "name": "Encabezado",
     "icon": "header",
     "sections": [{
-      "header": "Logo y Favicon",
+      "header": "Logo",
       "settings": [{
         "type": "checkbox",
         "id": "use_logo",
@@ -366,7 +454,10 @@
         "type": "image",
         "id": "logo.png",
         "label": "Seleccionar Logo"
-      }, {
+      }]
+    }, {
+      "header": "Favicon",
+      "settings": [{
         "type": "checkbox",
         "id": "use_favicon",
         "label": "Usar favicon personalizado"
@@ -377,24 +468,6 @@
         "max-height": 16,
         "label": "Seleccionar Favicon",
         "info": "16 x 16px required"
-      }]
-    }, {
-      "header": "Elementos",
-      "settings": [{
-        "type": "checkbox",
-        "id": "display_search",
-        "label": "Mostrar buscador"
-      }]
-    }, {
-      "header": "Barra",
-      "settings": [{
-        "type": "checkbox",
-        "id": "display_message_bar",
-        "label": "Mostrar mensaje en barra"
-      }, {
-        "type": "text",
-        "id": "message_bar",
-        "label": "Mensaje en barra"
       }]
     }]
   }, {
@@ -408,14 +481,29 @@
         "label": "Mostrar menú del footer"
       }, {
         "type": "checkbox",
-        "id": "footer_display_blog",
-        "label": "Mostrar úlitmas noticias"
-      }, {
-        "type": "checkbox",
         "id": "footer_display_social",
         "label": "Mostrar íconos de redes sociales",
         "info": "Configurar en sección de redes sociales"
+      }]
+    }, {
+      "header": "Información de Contacto",
+      "settings": [{
+        "type": "checkbox",
+        "id": "footer_display_contact",
+        "label": "Mostrar información de contacto"
       }, {
+        "type": "text",
+        "id": "footer_contact_title",
+        "label": "Título de contacto"
+      }, {
+        "type": "textarea",
+        "id": "footer_contact_content",
+        "label": "Contanido de contacto",
+        "info": "Puedes usar HTML básico."
+      }]
+    }, {
+      "header": "Newsletter",
+      "settings": [{
         "type": "checkbox",
         "id": "footer_display_newsletter",
         "label": "Mostrar newsletter"
@@ -465,55 +553,85 @@
         "type": "select",
         "id": "frontpage_section_1",
         "label": "Sección 1",
-        "default": "featured-slider",
+        "default": "featured-product",
         "options": [{
-          "value": "none",
-          "label": "Ningúno"
-        }, {
-          "value": "slider",
+          "value": "featured-slider",
           "label": "Slider"
+        }, {
+          "value": "featured-product",
+          "label": "Producto destacado"
         }, {
           "value": "featured-collection",
           "label": "Colección destacada"
         }, {
           "value": "featured-page",
           "label": "Contenido destacado"
+        }, {
+          "value": "none",
+          "label": "Ningúno"
         }]
       }, {
         "type": "select",
         "id": "frontpage_section_2",
         "label": "Sección 2",
-        "default": "featured-collection",
+        "default": "featured-products",
         "options": [{
-          "value": "none",
-          "label": "Ningúno"
-        }, {
           "value": "featured-slider",
           "label": "Slider"
+        }, {
+          "value": "featured-product",
+          "label": "Producto destacado"
         }, {
           "value": "featured-collection",
           "label": "Colección destacada"
         }, {
           "value": "featured-page",
           "label": "Contenido destacado"
+        }, {
+          "value": "none",
+          "label": "Ningúno"
         }]
       }, {
         "type": "select",
         "id": "frontpage_section_3",
         "label": "Sección 3",
-        "default": "featured-page",
+        "default": "none",
         "options": [{
-          "value": "none",
-          "label": "Ningúno"
-        }, {
           "value": "featured-slider",
           "label": "Slider"
+        }, {
+          "value": "featured-product",
+          "label": "Producto destacado"
         }, {
           "value": "featured-collection",
           "label": "Colección destacada"
         }, {
           "value": "featured-page",
           "label": "Contenido destacado"
+        }, {
+          "value": "none",
+          "label": "Ningúno"
+        }]
+      }, {
+        "type": "select",
+        "id": "frontpage_section_4",
+        "label": "Sección 4",
+        "default": "none",
+        "options": [{
+          "value": "featured-slider",
+          "label": "Slider"
+        }, {
+          "value": "featured-product",
+          "label": "Producto destacado"
+        }, {
+          "value": "featured-collection",
+          "label": "Colección destacada"
+        }, {
+          "value": "featured-page",
+          "label": "Contenido destacado"
+        }, {
+          "value": "none",
+          "label": "Ningúno"
         }]
       }]
     }]
@@ -532,8 +650,8 @@
         "type": "image",
         "id": "slideshow_1.jpg",
         "label": "Image",
-        "max-width": 966,
-        "info": "966px de ancho recomendado"
+        "max-width": 1024,
+        "info": "1024px de ancho recomendado"
       }, {
         "type": "text",
         "id": "slide_1_alt",
@@ -554,8 +672,8 @@
         "type": "image",
         "id": "slideshow_2.jpg",
         "label": "Image",
-        "max-width": 966,
-        "info": "966px de ancho recomendado"
+        "max-width": 1024,
+        "info": "1024px de ancho recomendado"
       }, {
         "type": "text",
         "id": "slide_2_alt",
@@ -576,8 +694,8 @@
         "type": "image",
         "id": "slideshow_3.jpg",
         "label": "Image",
-        "max-width": 966,
-        "info": "966px de ancho recomendado"
+        "max-width": 1024,
+        "info": "1024px de ancho recomendado"
       }, {
         "type": "text",
         "id": "slide_3_alt",
@@ -597,8 +715,8 @@
         "type": "image",
         "id": "slideshow_4.jpg",
         "label": "Image",
-        "max-width": 966,
-        "info": "966px de ancho recomendado"
+        "max-width": 1024,
+        "info": "1024px de ancho recomendado"
       }, {
         "type": "text",
         "id": "slide_4_alt",
@@ -607,6 +725,17 @@
         "type": "text",
         "id": "slide_4_link",
         "label": "Hipervínculo"
+      }]
+    }]
+  }, {
+    "name": "Página de Inicio - Producto",
+    "icon": "home-page",
+    "sections": [{
+      "settings": [{
+        "type": "product",
+        "id": "frontpage_product",
+        "label": "Producto destacado",
+        "default": ""
       }]
     }]
   }, {

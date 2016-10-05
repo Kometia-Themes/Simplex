@@ -2,18 +2,17 @@
 
 {% block body %}
 <div class="row post">
-  <div class="col-sm-9">
-    <h1 class="post__title">{{ post.title }}</h1>
-    <p><em>{{ post.published_at | datetime }}</em></p>
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+    <p class="text-center">{{ blog.title }}</p>
+    <h1 class="post__title section-title">{{ post.title }}</h1>
+    <p class="post__date text-center">{{ post.published_at | datetime }}</p>
     <p class="post__content">{{ post.content }}</p>
     {% if settings.enable_share_blog %}
-      <hr>
+    <div class="text-center">
+      <hr class="divider">
       {% include '_social-share.twig' %}
+    </div>
     {% endif %}
-  </div>
-
-  <div class="col-sm-3 related-posts">
-    {% include '_blog-sidebar.twig' %}
   </div>
 </div>
 {% endblock %}

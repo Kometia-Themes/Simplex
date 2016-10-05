@@ -16,4 +16,9 @@
   {% include '_' ~ settings.frontpage_section_3 ~ '.twig' %}
 {% endif %}
 
+{% if settings.frontpage_section_4 is not empty and settings.frontpage_section_4 != 'none' %}
+  <hr>
+  {% include '_' ~ settings.frontpage_section_4 ~ '.twig' %}
+{% endif %}
+
 {% endblock %}

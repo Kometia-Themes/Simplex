@@ -1,59 +1,56 @@
-<div class="main-menu">
-  <div class="mobile">
-    <div class="col-xs-6 main-menu--extra">
-      <a href="#" class="toggle-menu mdi mdi-menu"></a>
+<div class="container">
+  <div class="main-menu">
+    <div class="mobile">
+      <div class="col-xs-6 main-menu--extra">
+        <a href="#" class="toggle-menu fa fa-bars"></a>
+      </div>
+
+      <div class="col-xs-6 main-menu--extra text-right">
+        <a href="/carrito">
+          <i class="fa fa-shopping-cart"><sup>{{ cart.total_items }}</sup></i> Carrito
+        </a>
+      </div>
+      <div class="clearfix"></div>
     </div>
 
-    <div class="col-xs-6 main-menu--extra text-right">
-      <a href="/carrito">
-        <i class="mdi mdi-cart"><sup>{{ cart.total_items }}</sup></i> Carrito
-      </a>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-
-  <ul class="menu-list">
-    <li class="main-menu--extra">
-      {% if settings.display_search %}
-        <form action="/buscar" method="get">
-          <div class="search">
-            <input type="text" placeholder="Buscar" name="q">
-            <button type="submit" class="mdi mdi-magnify"></button>
-          </div>
-        </form>
-      {% endif %}
-    </li>
-    {% if store.customer_accounts_enabled_or_optional %}
-      {% if customer %}
-        <li class="main-menu--extra">
-          <a href="/cuenta">
-            <i class="mdi mdi-lock"></i> Cuenta
-          </a>
-        </li>
-        {% else %}
-        <li class="main-menu--extra">
-          <a href="/cuenta/login">
-            <i class="mdi mdi-lock"></i> Ingresar
-          </a>
-        </li>
-        <li class="main-menu--extra">
-          <a href="/cuenta/registro">
-            <i class="mdi mdi-account"></i> Crear cuenta
-          </a>
-        </li>
+    <ul class="menu-list">
+      <li class="main-menu--extra">
+        {% if settings.display_search %}
+          <form action="/buscar" method="get">
+            <div class="search">
+              <input type="text" placeholder="Buscar" name="q">
+              <button type="submit" class="fa fa-search"></button>
+            </div>
+          </form>
         {% endif %}
-    {% endif %}
-
-    {% for link in menus.main %}
-      {% if link.children | length > 0 %}
-        {% include '_nav-item.twig' %}
-      {% else %}
-        <li>
-          <a href="{{ link.url }}">
-            {{ link.name }}
-          </a>
-        </li>
+      </li>
+      {% if store.customer_accounts_enabled_or_optional %}
+        {% if customer %}
+          <li class="main-menu--extra">
+            <a href="/cuenta">
+              <i class="fa fa-user"></i> Cuenta
+            </a>
+          </li>
+          {% else %}
+          <li class="main-menu--extra">
+            <a href="/cuenta/login">
+              <i class="fa fa-user"></i> Ingresar
+            </a>
+          </li>
+          {% endif %}
       {% endif %}
-    {% endfor %}
-  </ul>
+
+      {% for link in menus.main %}
+        {% if link.children | length > 0 %}
+          {% include '_nav-item.twig' %}
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.name }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
 </div>

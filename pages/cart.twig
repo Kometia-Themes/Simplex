@@ -2,21 +2,21 @@
 
 {% block body %}
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     <h1 class="section-title">{{ page_title }}</h1>
   </div>
 </div>
 
 {% if not cart or cart.items|length == 0 %}
 <div class="row cart">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     <p class="lead">No hay productos en el carrito.</p>
   </div>
 </div>
 {% else %}
 <div class="row cart">
-  <div class="col-sm-12">
-    <table class="table  table-responsive cart__resume-table">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+    <table class="table table-responsive cart__resume-table">
       <thead>
         <tr>
           <th class="hidden-xs"></th>
@@ -30,7 +30,13 @@
         {% for item in cart.items %}
         <tr>
           <td class="hidden-xs" align="center">
-            <img class="img-responsive" src="{{ item.sku.image.url }}?w=100" width="100" alt="{{ item.sku.full_name }}">
+            {% if item.sku.image_url is not empty %}
+            <img class="img-responsive" src="{{ item.sku.image_url }}?w=100" width="100" alt="{{ item.sku.full_name }}">
+            {% elseif item.product.image_url is not empty %}
+            <img class="img-responsive" src="{{ item.product.image_url }}?w=100" width="100" alt="{{ item.sku.full_name }}">
+            {% else %}
+            <img class="img-responsive" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" width="100" alt="{{ item.sku.full_name }}">
+            {% endif %}
           </td>
           <td>
             <a class="cart__resume-table__product-name" href="/productos/{{ item.product.permalink }}">{{ item.sku.full_name }}</a>
@@ -45,7 +51,7 @@
                 <option value="{{ qty }}"{{ qty == item.quantity ? ' selected="selected"' : null }}>{{ qty }}</option>
                 {% endfor %}
               </select>
-              <button class="btn btn-link" type="submit"><span class="mdi mdi-pencil"></span></button>
+              <button class="btn btn-link" type="submit"><span class="fa fa-pencil"></span></button>
             </form>
           </td>
           <td class="cart__resume-table__product-amount">
@@ -56,7 +62,7 @@
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="id" value="{{ item.id }}">
               <input type="hidden" name="quantity" value="0">
-              <button type="submit" class="cart__resume-table__product-remove"><span class="mdi mdi-delete"></span></button>
+              <button type="submit" class="cart__resume-table__product-remove"><i class="fa fa-trash-o"></i></button>
             </form>
           </td>
         </tr>
@@ -68,7 +74,7 @@
 
 <div class="cart-totals">
   <div class="row">
-    <div class="col-sm-12 text-right">
+    <div class="col-sm-12 col-md-8 col-md-offset-2 text-right">
       <h3 class="cart-total-row__title">TOTAL {{ cart.total_price | money('symbol', 'code') }}</h3>
       {% if store.is_tax_included %}
       <p>IVA Incluído</p>
@@ -78,13 +84,9 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="pull-left">
-      <a href="/productos" class="btn btn-lg text-uppercase">Seguir comprando</a>
-    </div>
-    <div class="pull-right">
-      <a href="/checkout" class="btn btn-lg text-uppercase">Continuar</a>
-    </div>
+  <div class="col-sm-12 col-md-8 col-md-offset-2 text-right">
+    <a href="/productos" class="btn btn-lg text-uppercase">Seguir comprando</a>
+    <a href="/checkout" class="btn btn-lg text-uppercase">Continuar</a>
   </div>
 </div>
 {% endif %}

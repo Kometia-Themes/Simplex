@@ -1,8 +1,8 @@
 {% if settings.frontpage_page is not empty and pages[settings.frontpage_page] is defined %}
   {% set featured_page = pages[settings.frontpage_page] %}
   <div class="row">
-    <div class="col-sm-12">
-      <h2>{{ featured_page.title | escape }}</h2>
+    <div class="col-sm-12 col-md-8 col-md-offset-2">
+      <h2 class="section-title text-center">{{ featured_page.title | escape }}</h2>
       {{ featured_page.content }}
     </div>
   </div>

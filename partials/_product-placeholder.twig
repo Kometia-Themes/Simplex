@@ -1,0 +1,60 @@
+<div class="placeholder-section">
+  <div class="placeholder-helper">
+    <div class="placeholder-info">
+      <h3>Promociona un producto único</h3>
+      <p>Selecciona el producto que deseas promocionar en <br> <b>Temas > Personalizar > Página de incio - Producto.</b></p>
+      <br>
+      <a href="/admin/themes" class="btn btn-block">Gestionar Temas</a>
+    </div>
+  </div>
+  <div class="placeholder-content">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-md-offset-2">
+        <h1 class="section-title">Producto de ejemplo</h1>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-single__pics">
+        <div class="row">
+          <div class="col-sm-12 col-md-8 col-md-offset-2">
+          <img src="{{ 'placeholders/product-11.jpg' | global_img_url }}" class="img-responsive center-block">
+          </div>
+        </div>
+      </div>
+
+      <div class="product-single text-center">
+        <div class="form-inline">
+          {% if settings.show_quantity_box %}
+          <div class="form-group">
+            <div class="product-single__qty">
+              <label>Cantidad</label>
+              <input id="quantity" type="number" name="quantity" value="1" class="form-control" />
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <div class="product-single__price" id="js-price-preview">
+            {{ '25000' | money('symbol', 'code') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg" id="js-add-to-cart">
+              <i class="fa fa-shopping-cart"></i> Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {% if settings.enable_share_products %}
+       <div class="product-single__social row text-center">
+        <div class="col-sm-12 col-md-8 col-md-offset-2">
+        {% include '_social-share.twig' %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

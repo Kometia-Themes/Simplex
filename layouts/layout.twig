@@ -22,17 +22,14 @@
 
   <link rel="canonical" href="{{ canonical_url }}" />
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.6.50/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  {% if 'home' in template or 'product' in template %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+  {% endif %}
   <link rel="stylesheet" href="{{ 'style.css' | asset_url }}" media="screen">
 
-  {% if 'Google' in settings.header_font %}
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.header_font | remove('Google+') }}:300,400,700">
-  {% endif %}
-  {% if 'Google' in settings.base_font and settings.base_font != settings.header_font %}
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.base_font | remove('Google+') }}:300,400,700">
-  {% endif %}
+  {% include '_google-fonts.twig' %}
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,22 +38,55 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  {% if 'home' in template or 'product' in template %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+  {% endif %}
+
   {{ head_content }}
 
 </head>
 
 <body role="document">
   <div class="header">
-    {% include "_nav-top.twig" %}
-    <div class="header__logo">
+    <div class="header__site">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 text-center">
+          <div class="col-sm-2 hidden-xs hidden-sm v-align">
+            {% if store.customer_accounts_enabled_or_optional %}
+            <ul class="list-inline head-options">
+              {% if customer %}
+              <li>
+                <a href="/cuenta" class="header__bar__link">
+                  <i class="fa fa-user"></i> Cuenta
+                </a>
+              </li>
+              {% else %}
+              <li>
+                <a href="/cuenta/login" class="header__bar__link">
+                  <i class="fa fa-user"></i> Ingresar
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </div>
+          <div class="col-sm-12 col-md-8 text-center v-align">
             {% if settings.use_logo %}
             <h1 class="header__title"><a href="/"><img class="img-responsive" src="{{ settings['logo.png'] }}" alt="{{ store.name }}"></a></h1>
             {% else %}
             <h1 class="header__title"><a href="/">{{ store.name }}</a></h1>
             {% endif %}
+          </div>
+          <div class="col-sm-2 text-right hidden-xs hidden-sm v-align">
+            <ul class="list-inline head-options">
+              <li>
+                <a href="/carrito" class="header__bar__link">
+                  <i class="fa fa-shopping-cart"><sup>{{ cart.total_items }}</sup></i> Carrito
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -67,43 +97,38 @@
   <div class="container body-container">
     {% include '_notifications.twig' %}
     {% block body %}{% endblock body %}
+  </div>
+  {% set footer_has_navigation = settings.footer_display_navigation and menus.footer | length > 0 %}
+  {% set footer_has_contact = settings.footer_display_contact %}
+  {% set footer_has_newsletter = settings.footer_display_newsletter %}
+  {% set footer_has_social = settings.footer_display_social and (
+      settings.twitter_link is not empty
+      or settings.facebook_link is not empty
+      or settings.google_link is not empty
+      or settings.youtube_link is not empty
+      or settings.vimeo_link is not empty
+      or settings.pinterest_link is not empty
+      or settings.instagram_link is not empty
+      or settings.tumblr_link is not empty
+  ) %}
 
-    {% set footer_has_navigation = settings.footer_display_navigation and menus.footer | length > 0 %}
-    {% set footer_has_blog = settings.footer_display_blog and blogs | first | length > 0 %}
-    {% set footer_has_newsletter = settings.footer_display_newsletter %}
-    {% set footer_has_social = settings.footer_display_social and (
-        settings.twitter_link is not empty
-        or settings.facebook_link is not empty
-        or settings.google_link is not empty
-        or settings.youtube_link is not empty
-        or settings.vimeo_link is not empty
-        or settings.pinterest_link is not empty
-        or settings.instagram_link is not empty
-        or settings.tumblr_link is not empty
-    ) %}
-
-    {% set footer_cols = footer_has_navigation + footer_has_blog + footer_has_social + footer_has_newsletter %}
-    <div class="footer">
+  {% set footer_cols = footer_has_navigation + footer_has_contact + footer_has_social + footer_has_newsletter %}
+  <div class="footer">
+    <div class="container">
+      <hr>
       <div class="row">
-        {% if footer_has_blog %}
-        {% set blog = blogs | first %}
-        {% set post = blogs[blog.permalink].posts | first %}
+        {% if footer_has_contact %}
         <div class="col-sm-{{ 12 / footer_cols }}">
-          <h4 class="footer__category">Últimas noticias</h4>
-          <ul class="list-unstyled">
-            <li>
-              <a class="footer__category-link" href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">
-                <h5>{{ post.title }}</h5>
-              </a>
-              <p>{{ (post.summary is not empty ? post.summary : post.content) | truncate_words(30) }}</p>
-            </li>
-          </ul>
+          <h3 class="footer__category">{{ settings.footer_contact_title is not empty ? settings.footer_contact_title : 'Ubícanos' }}</h3>
+          <p>
+            {{ settings.footer_contact_content }}
+          </p>
         </div>
         {% endif %}
 
         {% if footer_has_navigation %}
         <div class="col-sm-{{ 12 / footer_cols }}">
-          <h4 class="footer__category">Enlaces rápidos</h4>
+          <h3 class="footer__category">Enlaces rápidos</h3>
           <ul class="list-unstyled">
             {% for links in menus.footer %}
             <li>
@@ -118,31 +143,31 @@
 
         {% if footer_has_social %}
         <div class="col-sm-{{ 12 / footer_cols }}">
-          <h4 class="footer__category">Síguenos</h4>
+          <h3 class="footer__category">Síguenos</h3>
           <ul class="list-inline footer__payment-methods">
             {% if settings.twitter_link is not empty %}
-            <li><a href="{{ settings.twitter_link }}" target="_blank"><i class="mdi mdi-24px mdi-twitter"></i></a></li>
+            <li><a href="{{ settings.twitter_link }}" target="_blank"><i class="fa fa-2x fa-twitter"></i></a></li>
             {% endif %}
             {% if settings.facebook_link is not empty %}
-            <li><a href="{{ settings.facebook_link }}" target="_blank"><i class="mdi mdi-24px mdi-facebook"></i></a></li>
+            <li><a href="{{ settings.facebook_link }}" target="_blank"><i class="fa fa-2x fa-facebook"></i></a></li>
             {% endif %}
             {% if settings.google_link is not empty %}
-            <li><a href="{{ settings.google_link }}" target="_blank"><i class="mdi mdi-24px mdi-google-plus"></i></a></li>
+            <li><a href="{{ settings.google_link }}" target="_blank"><i class="fa fa-2x fa-google-plus"></i></a></li>
             {% endif %}
             {% if settings.youtube_link is not empty %}
-            <li><a href="{{ settings.youtube_link }}" target="_blank"><i class="mdi mdi-24px mdi-youtube-play"></i></a></li>
+            <li><a href="{{ settings.youtube_link }}" target="_blank"><i class="fa fa-2x fa-youtube-play"></i></a></li>
             {% endif %}
             {% if settings.vimeo_link is not empty %}
-            <li><a href="{{ settings.vimeo_link }}" target="_blank"><i class="mdi mdi-24px mdi-vimeo"></i></a></li>
+            <li><a href="{{ settings.vimeo_link }}" target="_blank"><i class="fa fa-2x fa-vimeo"></i></a></li>
             {% endif %}
             {% if settings.pinterest_link is not empty %}
-            <li><a href="{{ settings.pinterest_link }}" target="_blank"><i class="mdi mdi-24px mdi-pinterest"></i></a></li>
+            <li><a href="{{ settings.pinterest_link }}" target="_blank"><i class="fa fa-2x fa-pinterest"></i></a></li>
             {% endif %}
             {% if settings.instagram_link is not empty %}
-            <li><a href="{{ settings.instagram_link }}" target="_blank"><i class="mdi mdi-24px mdi-instagram"></i></a></li>
+            <li><a href="{{ settings.instagram_link }}" target="_blank"><i class="fa fa-2x fa-instagram"></i></a></li>
             {% endif %}
             {% if settings.tumblr_link is not empty %}
-            <li><a href="{{ settings.tumblr_link }}" target="_blank"><i class="mdi mdi-24px mdi-tumblr"></i></a></li>
+            <li><a href="{{ settings.tumblr_link }}" target="_blank"><i class="fa fa-2x fa-tumblr"></i></a></li>
             {% endif %}
           </ul>
         </div>
@@ -150,58 +175,57 @@
 
         {% if footer_has_newsletter %}
         <div class="col-sm-{{ 12 / footer_cols }}">
-          <h4 class="footer__category">Newsletter</h4>
+          <h3 class="footer__category">Newsletter</h3>
+          <p>{{ settings.mailing_list_text }}</p>
           {% form 'newsletter' %}
+          <div class="input-group">
             <input type="email" name="email" class="form-control footer__subscribe-input" placeholder="Email">
-            <button type="submit" class="btn footer__subscribe-button">Suscríbete</button>
+            <span class="input-group-btn">
+              <button type="submit" class="btn footer__subscribe-button"><i class="fa fa-check"></i></button>
+            </span>
+          </div>
           {% endform %}
-          <p class="footer__paragraph">{{ settings.mailing_list_text }}</p>
+        </div>
+        {% endif %}
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-8">
+          <p class="footer__copyright">
+            &copy; {{ 'now' | date("Y") }} {{ store.name }} - Derechos reservados |
+            <a href="https://www.shoperti.com">Tienda creada con Shoperti</a>
+          </p>
+        </div>
+        {% if settings.accept_visa or settings.accept_mastercard or settings.accept_amex or settings.accept_paypal or settings.accept_oxxo or settings.accept_cash %}
+        <div class="col-sm-4 text-right">
+          <ul class="list-inline footer__payment-methods">
+            {% if settings.accept_visa %}
+            <li><img src="{{ 'visa.png' | payment_img_url }}" alt="Visa"></li>
+            {% endif %}
+            {% if settings.accept_mastercard %}
+            <li><img src="{{ 'mastercard.png' | payment_img_url }}" alt="MasterCard"></li>
+            {% endif %}
+            {% if settings.accept_amex %}
+            <li><img src="{{ 'amex.png' | payment_img_url }}" alt="American Express"></li>
+            {% endif %}
+            {% if settings.accept_paypal %}
+            <li><img src="{{ 'paypal.png' | payment_img_url }}" alt="PayPal"></li>
+            {% endif %}
+            {% if settings.accept_oxxo %}
+            <li><img src="{{ 'oxxo.png' | payment_img_url }}" alt="OXXO"></li>
+            {% endif %}
+            {% if settings.accept_cash %}
+            <li><img src="{{ 'cash.png' | payment_img_url }}" alt="Efectivo"></li>
+            {% endif %}
+          </ul>
         </div>
         {% endif %}
       </div>
     </div>
-
-    {% if settings.accept_visa or settings.accept_mastercard or settings.accept_amex or settings.accept_paypal or settings.accept_oxxo or settings.accept_cash %}
-    <div class="row text-center">
-      <div class="col-sm-12">
-        <ul class="list-inline footer__payment-methods">
-          {% if settings.accept_visa %}
-          <li><img src="{{ 'visa.png' | payment_img_url }}" alt="Visa"></li>
-          {% endif %}
-          {% if settings.accept_mastercard %}
-          <li><img src="{{ 'mastercard.png' | payment_img_url }}" alt="MasterCard"></li>
-          {% endif %}
-          {% if settings.accept_amex %}
-          <li><img src="{{ 'amex.png' | payment_img_url }}" alt="American Express"></li>
-          {% endif %}
-          {% if settings.accept_paypal %}
-          <li><img src="{{ 'paypal.png' | payment_img_url }}" alt="PayPal"></li>
-          {% endif %}
-          {% if settings.accept_oxxo %}
-          <li><img src="{{ 'oxxo.png' | payment_img_url }}" alt="OXXO"></li>
-          {% endif %}
-          {% if settings.accept_cash %}
-          <li><img src="{{ 'cash.png' | payment_img_url }}" alt="Efectivo"></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <p class="footer__copyright">
-          &copy; {{ 'now' | date("Y") }} {{ store.name }} - Derechos reservados |
-          <a href="https://www.shoperti.com">Tienda creada con Shoperti</a>
-        </p>
-      </div>
-    </div>
   </div>
 
+
   {% block body_js %}
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
   <script src="{{ 'scripts.js' | asset_url }}"></script>
   {% endblock %}
 </body>

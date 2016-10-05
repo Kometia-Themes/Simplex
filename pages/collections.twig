@@ -2,19 +2,16 @@
 
 {% block body %}
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     <h1 class="section-title">{{ page_title }}</h1>
   </div>
 </div>
 
-{% if collections | length == 0 %}
-
-  {% include '_collections-placeholder.twig' %}
-
-{% else %}
-
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+  {% if collections | length == 0 %}
+    {% include '_collections-placeholder.twig' %}
+  {% else %}
     {% for collections_row in collections | batch(3) %}
     <div class="row">
       {% for collection in collections_row %}
@@ -24,11 +21,8 @@
       {% endfor %}
     </div>
     {% endfor %}
+    {% include '_pagination.twig' %}
+  {% endif %}
   </div>
 </div>
-
-{% include '_pagination.twig' %}
-
-{% endif
-%}
 {% endblock %}

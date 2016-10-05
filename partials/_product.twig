@@ -7,7 +7,7 @@
   {% endif %}
   <div class="product-card__thumb">
     <a href="/productos/{{ product.permalink }}">
-      {% if product.image_url is defined %}
+      {% if product.image_url is not empty %}
       <img class="img-responsive product-card__thumb-image" src="{{ product.image_url }}" alt="{{ product.name }}">
       {% else %}
       <img class="img-responsive product-card__thumb-image" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" alt="{{ product.name }}">
