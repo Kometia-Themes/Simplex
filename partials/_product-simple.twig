@@ -92,7 +92,9 @@
           <i class="fa fa-shopping-cart"></i> Añadir al carrito
         </button>
         {% else %}
-        <p>No disponible</p>
+        <button type="submit" class="btn btn-lg disabled" id="js-add-to-cart" disabled="true">
+          <i class="fa fa-times-circle"></i> No disponible
+        </button>
         {% endif %}
       </div>
     </form>
