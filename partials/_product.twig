@@ -1,8 +1,7 @@
 <div class="product-card">
   {% if not product.is_in_stock %}
   <div class="ribbon"><span class="danger">AGOTADO</span></div>
-  {% endif %}
-  {% if product.compared_price is defined and product.compared_price > 0 %}
+  {% elseif product.compared_price is defined and product.compared_price > 0 %}
   <div class="ribbon"><span class="warning">OFERTA</span></div>
   {% endif %}
   <div class="product-card__thumb">

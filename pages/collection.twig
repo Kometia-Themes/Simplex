@@ -2,13 +2,13 @@
 
 {% block body %}
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     <h1 class="section-title">{{ collection.title }}</h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
     {% for products_row in products | batch(3) %}
     <div class="row">
       {% for product in products_row %}

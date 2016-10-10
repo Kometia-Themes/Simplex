@@ -5,7 +5,6 @@
   {% if categories | length > 0 %}
   <div class="col-sm-3 col-md-2 products-filter">
     <h4 class="products-filter__title">Categorías</h4>
-    <hr>
     <div class="form-group products-filter__container">
       {% for category_element in categories %}
       {% include '_category_tree_item.twig' with { 'category': category_element, 'current': category, index: loop.index } only %}
