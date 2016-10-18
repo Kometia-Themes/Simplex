@@ -134,10 +134,22 @@ button {
   font-family: {{ settings.header_font | remove('Google+') | replace({'+': ' '}) }};
 }
 
-.breadcrumb {
-  padding: 8px 0;
-  margin-bottom: 0;
-  background-color: {{ settings.shop_bg_color }};
+@media screen and (min-width:992px) {
+  .hidden-desktop {
+    display:none !important;
+  }
+  .hidden-mobile {
+    display:block !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hidden-desktop {
+    display:block !important;
+  }
+  .hidden-mobile {
+    display:none !important;
+  }
 }
 
 .placeholder-section {
@@ -358,196 +370,116 @@ input.checkbox-control__input[type="checkbox"]:disabled + label::before {
   margin-right: -4px;
 }
 
+@media (max-width: 767px) {
+  .v-align {
+    display: block;
+  }
+}
+
 .header__title a {
   font-size: 58px;
   text-decoration: none;
 }
 
-.main-menu {
+.navbar-default {
   font-family: {{ settings.accent_font | remove('Google+') | replace({'+': ' '}) }};
   background: {{ settings.nav_bg_color }};
+  border: none;
   border-radius: 3px;
-  position: relative;
-  text-align: center;
-  z-index: 9999;
 }
 
-.main-menu a {
+.navbar-header {
+  border-radius: 3px;
+}
+
+@media (min-width: 768px) {
+  .navbar .navbar-nav {
+      display: inline-block;
+      float: none;
+      vertical-align: top;
+  }
+
+  .navbar .navbar-collapse {
+      text-align: center;
+  }
+}
+
+.navbar-default .navbar-nav>li>a {
   color: {{ settings.nav_link_color }};
   font-size: {{ settings.accent_font_size }};
   font-weight: bold;
 }
 
-.main-menu_menu a {
-  color: {{ settings.body_font_color }};
-  font-size: {{ settings.accent_font_size }};
-  font-weight: bold;
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: {{ settings.nav_link_color }};
+    font-size: {{ settings.accent_font_size }};
+  }
 }
 
-.main-menu > ul > li > a:hover {
+.navbar-toggle {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+.navbar-default .navbar-brand {
   color: {{ settings.nav_link_color }};
-  opacity: 0.7;
-  text-decoration: none;
-  -webkit-backface-visibility: hidden;
 }
 
-.main-menu .mobile a {
-  display: inline-block;
-  font-size: 18px;
-  padding: 10px;
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: {{ settings.nav_link_color }};
 }
 
-.main-menu .mobile a.toggle-menu {
-  font-size: 30px;
-}
-
-.main-menu ul {
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-}
-
-.main-menu ul li {
-  list-style: none;
-  display: inline-block;
-  margin: 0px;
-  padding: 0px;
+.dropdown-submenu {
   position: relative;
-  text-transform: uppercase;
-  moz-transition: all 0.5s ease, outline 0s;
-  webkit-transition: all 0.5s ease, outline 0s;
-  -webkit-transition: all 0.5s ease, outline 0.000001s;
-  transition: all 0.5s ease, outline 0.000001s;
 }
 
-.main-menu ul li a,
-.main-menu ul li span {
-  display: block;
-  padding: 10px;
-  text-align: left;
-}
-
-.main-menu ul li.submenu a {
-  padding-right: 20px;
-}
-
-.main-menu ul li > ul {
-  display: none;
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
   left: 100%;
-  min-width: 160px;
-  position: absolute;
-  top: 100%;
-  margin-top: -10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 4px rgba(0,0,0,.175);
-  border-radius: 3px;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
 }
 
-.main-menu_dropdown > ul {
-  left: 0 !important;
-  margin-top: -1px !important;
-}
-
-.main-menu ul li > ul li {
-  background: #fff;
+.dropdown-submenu.active>.dropdown-menu {
   display: block;
 }
 
-.main-menu ul > li.active a {
-  font-weight: bold;
+.dropdown-submenu.active>a:after {
+  border-left-color: #fff;
 }
 
-.main-menu .main-menu--extra {
-  display: none;
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+  margin-top: 5px;
+  margin-right: -10px;
 }
 
-.menu-list {
-  padding: 8px 0 !important;
+.dropdown-submenu:hover>a:after {
+  border-left-color: #fff;
 }
 
-.main-menu__submenu {
-    position: relative;
+.dropdown-submenu.pull-left {
+  float: none;
 }
 
-.main-menu__submenu .main-menu__menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-}
-
-@media screen and (min-width: 992px) {
-  .main-menu > ul {
-    display: block !important;
-    height: auto !important;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .main-menu {
-    text-align: left;
-  }
-
-  .main-menu > ul {
-    display: none;
-  }
-
-  .main-menu > ul li {
-    border-bottom: solid 1px #ddd;
-    border-left: solid 0px #ddd;
-    display: block;
-  }
-
-  .main-menu > ul li:last-of-type {
-    border-bottom: none;
-  }
-
-  .main-menu > ul li:hover,
-  .main-menu > ul li.active {
-    border-left: solid 10px #ddd;
-    border-bottom: solid 1px #ddd;
-  }
-
-  .main-menu > ul li:hover:last-of-type,
-  .main-menu > ul li.active:last-of-type {
-    border-bottom: none;
-  }
-
-  .main-menu > ul li:hover a,
-  .main-menu > ul li.active a,
-  .main-menu > ul li:hover span,
-  .main-menu > ul li.active span {
-    padding-left: 20px;
-  }
-
-  .main-menu > ul li > ul {
-    height: auto;
-    left: 0px;
-    position: relative;
-    top: 0;
-    width: 100%;
-    padding: 0;
-  }
-
-  .main-menu > ul li > ul li {
-    border: none;
-    border-bottom: solid 1px #ddd;
-    border-left: solid 0px #ddd;
-    box-shadow: none;
-    height: auto;
-    margin: 0px;
-  }
-
-  .main-menu > ul li > ul li:first-of-type {
-    border-top: solid 1px #ddd;
-  }
-
-  .main-menu > ul li > ul li:last-of-type {
-    border-bottom: none;
-  }
-
-  .main-menu .main-menu--extra {
-    display: block;
-  }
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
 }
 
 .footer {
@@ -614,9 +546,7 @@ input.checkbox-control__input[type="checkbox"]:disabled + label::before {
   transition: border .2s ease-in-out;
   -webkit-transition: border .2s ease-in-out;
   -o-transition: border .2s ease-in-out;
-  border-radius: 2px;
-  margin-bottom: 25px;
-  padding: 20px 0;
+  margin-bottom: 30px;
 }
 
 .product-card__details {

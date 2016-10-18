@@ -1,56 +1,37 @@
 <div class="container">
-  <div class="main-menu">
-    <div class="mobile">
-      <div class="col-xs-6 main-menu--extra">
-        <a href="#" class="toggle-menu fa fa-bars"></a>
-      </div>
-
-      <div class="col-xs-6 main-menu--extra text-right">
-        <a href="/carrito">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a class="hidden-sm hidden-md hidden-lg navbar-brand pull-right" href="/carrito">
           <i class="fa fa-shopping-cart"><sup>{{ cart.total_items }}</sup></i> Carrito
-        </a>
-      </div>
-      <div class="clearfix"></div>
+      </a>
     </div>
-
-    <ul class="menu-list">
-      <li class="main-menu--extra">
-        {% if settings.display_search %}
-          <form action="/buscar" method="get">
-            <div class="search">
-              <input type="text" placeholder="Buscar" name="q">
-              <button type="submit" class="fa fa-search"></button>
-            </div>
-          </form>
-        {% endif %}
-      </li>
-      {% if store.customer_accounts_enabled_or_optional %}
-        {% if customer %}
-          <li class="main-menu--extra">
-            <a href="/cuenta">
-              <i class="fa fa-user"></i> Cuenta
-            </a>
-          </li>
-          {% else %}
-          <li class="main-menu--extra">
-            <a href="/cuenta/login">
-              <i class="fa fa-user"></i> Ingresar
-            </a>
-          </li>
-          {% endif %}
-      {% endif %}
-
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
       {% for link in menus.main %}
         {% if link.children | length > 0 %}
-          {% include '_nav-item.twig' %}
-        {% else %}
           <li>
-            <a href="{{ link.url }}">
-              {{ link.name }}
-            </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ link.name }} <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              {% for children in link.children %}
+                {% include '_nav-item.twig' with {'link': children} %}
+              {% endfor %}
+            </ul>
           </li>
+        {% else %}
+        <li>
+          <a href="{{ link.url }}">
+            {{ link.name }}
+          </a>
+        </li>
         {% endif %}
       {% endfor %}
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>
