@@ -31,9 +31,9 @@
         <tr>
           <td class="hidden-xs" align="center">
             {% if item.sku.image_url is not empty %}
-            <img class="img-responsive" src="{{ item.sku.image_url }}?w=100" width="100" alt="{{ item.product.name }}">
+            <img class="img-responsive" src="{{ item.sku.image_url }}&w=100" width="100" alt="{{ item.product.name }}">
             {% elseif item.product.image_url is not empty %}
-            <img class="img-responsive" src="{{ item.product.image_url }}?w=100" width="100" alt="{{ item.product.name }}">
+            <img class="img-responsive" src="{{ item.product.image_url }}&w=100" width="100" alt="{{ item.product.name }}">
             {% else %}
             <img class="img-responsive" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" width="100" alt="{{ item.product.name }}">
             {% endif %}
