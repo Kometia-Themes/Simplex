@@ -53,7 +53,7 @@
     <div class="header__site">
       <div class="container">
         <div class="row">
-          <div class="col-sm-2 hidden-xs hidden-sm v-align">
+          <div class="col-sm-3 hidden-xs hidden-sm v-align">
             {% if store.customer_accounts_enabled_or_optional %}
             <ul class="list-inline head-options">
               {% if customer %}
@@ -72,14 +72,14 @@
             </ul>
             {% endif %}
           </div>
-          <div class="col-sm-12 col-md-8 text-center v-align">
+          <div class="col-sm-12 col-md-6 text-center v-align">
             {% if settings.use_logo %}
             <h1 class="header__title"><a href="/"><img class="img-responsive" src="{{ settings['logo.png'] }}" alt="{{ store.name }}"></a></h1>
             {% else %}
             <h1 class="header__title"><a href="/">{{ store.name }}</a></h1>
             {% endif %}
           </div>
-          <div class="col-sm-2 text-right hidden-xs hidden-sm v-align">
+          <div class="col-sm-3 text-right hidden-xs hidden-sm v-align">
             <ul class="list-inline head-options">
               <li>
                 <a href="/carrito" class="header__bar__link">
@@ -87,6 +87,10 @@
                 </a>
               </li>
             </ul>
+            <form action="/buscar" method="get" class="main-search" style="position:absolute; right:15px; bottom: -40px;">
+              <input style="padding: 6px; width: 100%;" class="input-search" type="text" name="q" placeholder="Buscar..." autocomplete="on">
+              <button style="position: absolute; right: 0; bottom: 0; z-index: 999; height: 100%; width: 40px; border: 0;" type="submit" class="button-search"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
           </div>
         </div>
       </div>
