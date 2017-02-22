@@ -40,7 +40,7 @@
           </td>
           <td>
             <a class="cart__resume-table__product-name" href="/productos/{{ item.product.permalink }}">
-              {{ item.product.name }}{% if item.product.modifiers.count > 1 %} - {{ item.sku.name }}{% endif %}
+              {{ item.product.name }}{% if item.product.modifiers.count > 0 %} - {{ item.sku.name }}{% endif %}
             </a>
             <p>{{ item.product.excerpt | raw }}</p>
           </td>
