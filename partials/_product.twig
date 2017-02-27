@@ -1,7 +1,7 @@
 <div class="product-card">
   {% if not product.is_in_stock %}
   <div class="ribbon"><span class="danger">AGOTADO</span></div>
-  {% elseif product.compared_price is defined and product.compared_price > 0 %}
+  {% elseif product.compared_price > product.price %}
   <div class="ribbon"><span class="warning">OFERTA</span></div>
   {% endif %}
   <div class="product-card__thumb">
@@ -17,7 +17,7 @@
     <a href="/productos/{{ product.permalink }}">
       <h4 class="product-card__name">{{ product.name }}</h4>
       <span class="product-card__price">
-        {% if product.compared_price is defined and product.compared_price > 0 %}
+        {% if product.compared_price > product.price %}
           <del>{{ product.compared_price | money('symbol', 'code') }}</del>
         {% endif %}
         {{ product.price | money('symbol', 'code') }}
