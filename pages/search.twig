@@ -9,8 +9,8 @@
       <div class="form-group">
         <label for="q">Buscar:</label>
         <input type="text" class="form-control" name="q">
+        <input type="hidden" name="type" value="product">
       </div>
-
       <div class="form-group">
         <button type="submit" class="btn pull-right">Buscar</button>
       </div>
@@ -19,13 +19,12 @@
 </div>
 {% else %}
 <div class="row">
-  <div class="col-sm-12 col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
     <h3 class="text-center section-title">Resultados de la búsqueda para: "{{ search }}"</h1>
   </div>
 </div>
-
 <div class="row">
-  <div class="col-sm-12 col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
     {% if results.products | length == 0 %}
     <div class="text-center">
       <h5>No se encontraron productos con los términos de búsqueda.</h5>
